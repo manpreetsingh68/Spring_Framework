@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- !DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd"> -->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	   default-init-method="initMethod" default-destroy-method="cleanUp">
+	
+	<context:annotation-config/>
+	<context:component-scan base-package="org.framework.spring" />
+
+	<!-- bean id="triangle" class="org.framework.spring.Triangle"> 
+			<constructor-arg index="0" value="Equilateral"/> 
+			<constructor-arg index="1" value="20"/> 
+	</bean> -->
+
+	<!-- bean id="parenttriangle" class="org.framework.spring.Triangle"> 
+			<property name="pointA" ref="zeroPoint" /> 
+	</bean> -->
+
+	<!-- bean id="triangle" class="org.framework.spring.Triangle"> 
+			<property name="pointA" ref="pointA" /> 
+			<property name="pointB" ref="pointB" /> 
+			<property name="pointC" ref="pointC" /> 
+	/bean> -->
+
+	<!-- bean id="circle" class="org.framework.spring.Circle">
+
+	</bean> -->
+
+	<bean id="pointA" class="org.framework.spring.Point">
+		<qualifier value="circlePoint" />
+		<property name="x" value="${pointA.PointX}" />
+		<property name="y" value="${pointA.PointY}" />
+	</bean>
+
+	<bean id="pointB" class="org.framework.spring.Point">
+		<property name="x" value="${pointB.PointX}" />
+		<property name="y" value="${pointB.PointY}" />
+	</bean>
+
+	<bean id="pointC" class="org.framework.spring.Point">
+		<property name="x" value="${pointC.PointX}" />
+		<property name="y" value="${pointC.PointY}" />
+	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>mymessages</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- bean class="org.framework.spring.DisplayNameBeanPostProcessor" /> -->
+
+	<bean class="org.framework.spring.MyBeanFactoryPostProcessor" />
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="pointsconfig.properties" />
+	</bean>
+
+	<!-- bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/> -->
+	<!-- bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
+
+	<alias name="triangle" alias="triangle-alias" />
+	<alias name="circle" alias="circle-alias" />
+
+</beans>
+
+

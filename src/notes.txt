@@ -1,0 +1,84 @@
+Topics covered:
+
+1. Dependency Injection - When an object of a class is initialized by some other class/container and injected into the class, it is called
+							dependency injection.
+
+1 a. Types of Dependency Injection:
+		- Setter Injection
+		- Constructor Injection
+		
+2. Application Context - Application context is responsible for creating and passing objects. 
+2 a. One type of application context is 'ClassPathXmlApplicationContext' which refers to an xml file for creating objects. 
+2 b. Xml file makes use of Bean concept. Beans are responsible for initializing the objects and passing the values to it.
+2 c. We can define Inner Bean, Aliases and idref.
+2 d. Autowire - If the name of class variable and bean IDs is same, we can autowire a bean to map the values. We need to pass 'autowire' parameter
+	 to the bean. 
+		
+3. Bean Scopes-
+   There are two types of scopes:
+a. Singleton
+b. Prototype
+
+Singleton - Singleton bean is created only once per spring container. Even if we make multiple calls to spring container for different classes, 
+			same bean once initialized is passed.
+
+Prototype - Prototype bean is created with every new request or reference.
+
+4. Web-aware context bean scopes:
+   There are three types of scopes:
+a. Request - New bean per servlet request
+b. Session - New bean per session
+c. Global session - New bean per global HTTP session (portlet context) 
+
+5. ApplicationContextAware - When we want to use application context in the object itself, we implement ApplicationContextAware interface. 
+   It has a single method called 'setApplicationContext'
+
+6. BeanNameAware - BeanNameAware is an interface which is implemented by object to get details about the beans.
+
+7. Life cycle Callbacks - 
+   We can call init and destroy methods before creation and after destroying bean resp. by implementing below available 
+   interfaces:
+   a. InitializationBean
+   b. DisposibleBean
+   
+   Also, we can define init-method and destroy-method called be defined in the xml itself with the bean, and these methods written in bean can be called.
+   
+8. BeanPostProcessor - It is an interface with two methods 'postProcessAfterInitialization' and 'postProcessBeforeInitialization'. It is used when we want
+   to run a piece of code before and after our beans are actually created. So, if we want to take some action before a bean is created and after a bean is 
+   created, we can make use of BeanPostProcessor.
+   
+9. BeanFactoryPostProcessor - It is an interface with single method 'postProcessBeanFactory'. It is invoked before a Bean factory is initialized.
+
+10. Spring Annotations:
+
+a. @Required - Depracated
+b. @Autowired
+c. @Qualifier
+
+11. JSR-250 annotations (Java Standard Request):
+
+a. @Resource - It is used to identify the bean that need to be injected for a particular setter method.
+b. @PostConstruct - This annotation is used to execute a piece of code just after a bean has been initialized.
+c. @PreDestroy - This annotation is used to execute a piece of code just before a bean is destroyed. 
+
+12. Stereotype annotations:
+
+a. @Component - It registers a particular class as a bean so that we need to define the same as a tag in xml file.
+b. @Controller
+c. @Repository
+d. @Service
+
+13. MessageSource - It is an interface which is used to read messages from a properties file. We need to define a 
+	bean in xml file on order to enable it, and it has a method 'getMessage' to read the messages from file.
+	
+14. Event Handling in Spring:
+
+There are three parts:
+a. Event Listener (AppicationEventListener)
+b. Event (ApplicationEvent)
+c. Event Publisher (ApplicationEventPublisherAware)
+	
+	
+
+
+   
